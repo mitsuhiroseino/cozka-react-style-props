@@ -1,21 +1,22 @@
 # @gusok/react-style-props
 
-**[日本語版READMEはこちら](./README-ja.md)**
+**[English README is available here](./README.md)**
 
-`@gusok/react-style-props` is a package that moves style-related properties set in a component's props to standard React `style`, [Emotion](https://emotion.sh/docs/introduction) `css`, or similar properties.  
-This functionality is designed to make it easier to set frequently used style-related properties.
+`@gusok/react-style-props` は、コンポーネントのpropsに設定されたスタイル関連のプロパティを、  
+[React](https://react.dev/)標準の`style`や[Emotion](https://emotion.sh/docs/introduction)の`css`等のプロパティへ移動させる機能を提供するパッケージです。  
+この機能は利用頻度の高いスタイル関連のプロパティを設定しやすくすることを目的に作成されました。
 
-## Installation
+## インストール
 
 ```sh
 npm install @gusok/react-style-props
 ```
 
-## Usage
+## 使い方
 
 ### `applyStyleProps`
 
-`applyStyleProps` applies style-related properties to `style`, `css`, `sx`, or other designated properties.
+`applyStyleProps` は、スタイル関連のプロパティを `style`、`css`、`sx` などに適用します。
 
 ```tsx
 import applyStyleProps from '@gusok/react-style-props';
@@ -28,12 +29,12 @@ const props = {
 
 const styledProps = applyStyleProps(props);
 console.log(styledProps);
-// Output: { style: { color: "red", margin: "10px" }, value: "ABC" }
+// 出力: { style: { color: "red", margin: "10px" }, value: "ABC" }
 ```
 
 ### `withStyledProps`
 
-You can use a Higher-Order Component (HOC) to add style-related property integration to a component.
+HOC を使用してスタイル関連のプロパティを統合する機能をコンポーネントへ追加できます。
 
 ```tsx
 import { withStyledProps } from '@gusok/react-style-props';
@@ -44,48 +45,48 @@ const StyledBox = withStyledProps(Box);
 <StyledBox xWidth="100px" xHeight="200px" xBackgroundColor="red" />;
 ```
 
-## Options
+## オプション
 
-You can customize the behavior of `applyStyleProps` and `withStyledProps` by passing `StylePropsOptions`.
+`applyStyleProps` や `withStyledProps` に `StylePropsOptions` を渡すことで挙動をカスタマイズできます。
 
 ```tsx
-// Maps the `cssWidth` prop to the `css` property’s `width` key and `cssHeight` to `height`
+// propsのcssWidthの値をcssプロパティのwidthに、cssHeightの値をheightに設定する
 const options = {
   styleProp: 'css',
   propsMap: { cssWidth: 'width', cssHeight: 'height' },
 };
 
-// Using applyStyleProps
+// applyStylePropsの場合
 const newProps = applyStyleProps(props, options);
 
-// Using withStyledProps
+// withStyledPropsの場合
 const Box = (props: any) => <div {...props} />;
 const StyledBox = withStyledProps(Box, options);
 ```
 
 ### `styleProp`
 
-- `style`, `css`, `sx`, or any other property
-- Defines where the style-related properties should be assigned
-- Default: `style`
+- `style`、`css`、`sx`、または任意のプロパティ
+- スタイル関連のプロパティの設定先
+- デフォルト: `style`
 
 ### `styleApplyMode`
 
-- `merge`, `append`
-- Determines behavior when a value is already set for `styleProp`
-  - `merge`: Merges with the existing object if it's an object
-  - `append`: Appends to an array if the existing value is an array; otherwise, creates a new array
-- Default behavior:
-  - When `styleProp` is `style`: `merge`
-  - When `styleProp` is `css`: `append`
-  - When `styleProp` is `sx`: `append`
-  - Otherwise: `merge`
+- `merge`、`append`
+- `styleProp`に指定したプロパティに値が設定されていた場合の動作
+  - `merge`: 既存のプロパティ値がオブジェクトの場合はマージする
+  - `append`: 既存のプロパティ値が配列の場合は追加、配列以外の場合は新たに配列を作成する
+- デフォルト:
+  - styleProp=`style`の場合: `merge`
+  - styleProp=`css`の場合: `append`
+  - styleProp=`sx`の場合: `append`
+  - 上記以外の場合: `merge`
 
 ### `propsMap`
 
 - `Record<string, keyof CSSProperties>`
-- A mapping between props and keys under the `styleProp`
-- Default:
+- propsと`styleProp`で指定したプロパティ配下のキーのマッピング
+- デフォルト: 下記の通り
 
 ```js
 const propsMap = {
@@ -139,6 +140,6 @@ const propsMap = {
 };
 ```
 
-## License
+## ライセンス
 
 MIT License
