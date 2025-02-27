@@ -1,9 +1,9 @@
 # @gusok/react-style-props
 
-**[日本語版READMEはこちら](./README-ja.md)**
+**[日本語の README はこちら](./README.ja.md)**
 
-`@gusok/react-style-props` is a package that moves style-related properties set in a component's props to standard React `style`, [Emotion](https://emotion.sh/docs/introduction) `css`, or similar properties.  
-This functionality is designed to make it easier to set frequently used style-related properties.
+`@gusok/react-style-props` is a package that moves style-related properties set in component props to properties like React's standard `style` or Emotion's `css`.
+This feature is designed to make it easier to set frequently used style-related properties.
 
 ## Installation
 
@@ -15,7 +15,7 @@ npm install @gusok/react-style-props
 
 ### `applyStyleProps`
 
-`applyStyleProps` applies style-related properties to `style`, `css`, `sx`, or other designated properties.
+`applyStyleProps` applies style-related properties to `style`, `css`, `sx`, etc.
 
 ```tsx
 import applyStyleProps from '@gusok/react-style-props';
@@ -33,7 +33,7 @@ console.log(styledProps);
 
 ### `withStyledProps`
 
-You can use a Higher-Order Component (HOC) to add style-related property integration to a component.
+You can use an HOC to integrate style-related properties into a component.
 
 ```tsx
 import { withStyledProps } from '@gusok/react-style-props';
@@ -49,16 +49,16 @@ const StyledBox = withStyledProps(Box);
 You can customize the behavior of `applyStyleProps` and `withStyledProps` by passing `StylePropsOptions`.
 
 ```tsx
-// Maps the `cssWidth` prop to the `css` property’s `width` key and `cssHeight` to `height`
+// Map cssWidth to the width property and cssHeight to the height property inside the css prop
 const options = {
   styleProp: 'css',
-  propsMap: { cssWidth: 'width', cssHeight: 'height' },
+  styleKeyMap: { cssWidth: 'width', cssHeight: 'height' },
 };
 
-// Using applyStyleProps
+// For applyStyleProps
 const newProps = applyStyleProps(props, options);
 
-// Using withStyledProps
+// For withStyledProps
 const Box = (props: any) => <div {...props} />;
 const StyledBox = withStyledProps(Box, options);
 ```
@@ -66,29 +66,25 @@ const StyledBox = withStyledProps(Box, options);
 ### `styleProp`
 
 - `style`, `css`, `sx`, or any other property
-- Defines where the style-related properties should be assigned
+- The destination for style-related properties
 - Default: `style`
 
 ### `styleApplyMode`
 
 - `merge`, `append`
-- Determines behavior when a value is already set for `styleProp`
-  - `merge`: Merges with the existing object if it's an object
-  - `append`: Appends to an array if the existing value is an array; otherwise, creates a new array
-- Default behavior:
-  - When `styleProp` is `style`: `merge`
-  - When `styleProp` is `css`: `append`
-  - When `styleProp` is `sx`: `append`
-  - Otherwise: `merge`
+- Defines behavior when an object is already set on the property specified in `styleProp`
+  - `merge`: Merge the objects
+  - `append`: Add to an array
+- Default: `merge`
 
-### `propsMap`
+### `styleKeyMap`
 
 - `Record<string, keyof CSSProperties>`
-- A mapping between props and keys under the `styleProp`
+- A mapping of props to the keys under the property specified in `styleProp`
 - Default:
 
 ```js
-const propsMap = {
+const styleKeyMap = {
   xBackground: 'background',
   xBackgroundColor: 'backgroundColor',
   xBorder: 'border',

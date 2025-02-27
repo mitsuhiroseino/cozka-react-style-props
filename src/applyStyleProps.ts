@@ -1,77 +1,62 @@
 import { CSSProperties } from 'react';
 import { DEFAULT_STYLE_KEY_MAP } from './constants';
-import { DefaultStyleKeyMap, StyleProps, StylePropsOptions } from './types';
-
-const DEFAULT_APPLY_STYLE_MODES = {
-  style: 'merge',
-  css: 'append',
-  sx: 'append',
-};
+import { StyleProps, StylePropsOptions, XStyleKeyMap } from './types';
 
 /**
  * スタイル関連のプロパティをスタイルプロパティ(styleやcss)へ適用する
+ * スタイルプロパティに既に値が設定されている場合の動作は下記の通り
+ *
  * @param props プロパティ
  * @param options オプション
  * @returns
  */
 export default function applyStyleProps<
-  P extends Record<string, any>,
-  M extends Record<string, keyof CSSProperties> = DefaultStyleKeyMap,
->(props: P & StyleProps<M>, options: StylePropsOptions<M> = {}) {
+  P extends Record<string, any> & StyleProps<M>,
+  M extends Record<string, keyof CSSProperties> = XStyleKeyMap,
+>(props: P, options: StylePropsOptions<M> = {}) {
   const {
     styleProp = 'style',
-    styleApplyMode = DEFAULT_APPLY_STYLE_MODES[styleProp] ?? 'merge',
+    styleApplyMode,
     styleKeyMap = DEFAULT_STYLE_KEY_MAP,
   } = options;
   const rest: Record<string, any> = { ...props };
 
-  let style;
-  if (styleApplyMode === 'append') {
-    // append
-    style = {};
-  } else {
-    // merge
-    style = rest[styleProp];
-    delete rest[styleProp];
+  const style: Record<string, any> = {};
+  let hasStyle = false;
+  // rest配下のプロパティをstyleに移動
+  for (const xKey in styleKeyMap) {
+    if (rest[xKey] !== undefined) {
+      const key = styleKeyMap[xKey];
+      style[key] = rest[xKey];
+      delete rest[xKey];
+      hasStyle = true;
+    }
   }
 
-  // rest配下のプロパティをstyleに移動
-  _moveStyleProps(rest, style, styleKeyMap);
-
-  if (Object.keys(style).length) {
-    if (styleApplyMode === 'append') {
-      // append
-      if (Array.isArray(rest[styleProp])) {
-        rest[styleProp].push(style);
-      } else if (rest[styleProp]) {
-        rest[styleProp] = [style, rest[styleProp]];
+  if (hasStyle) {
+    // style関連のプロパティがある場合のみ処理
+    const orgStyle = rest[styleProp];
+    if (!orgStyle) {
+      // 未設定の場合はそのまま設定
+      rest[styleProp] = style;
+    } else if (Array.isArray(orgStyle)) {
+      // 配列の場合は先頭に追加
+      rest[styleProp] = [style].concat(orgStyle);
+    } else if (Object.prototype.toString.call(orgStyle) === '[object Object]') {
+      if (styleApplyMode === 'append') {
+        // オブジェクトで'append'の場合は先頭に追加
+        rest[styleProp] = [style, orgStyle];
       } else {
+        // オブジェクトで'append'以外の場合はマージ
+        for (const key in orgStyle) {
+          if (orgStyle[key] !== undefined) {
+            style[key] = orgStyle[key];
+          }
+        }
         rest[styleProp] = style;
       }
-    } else {
-      // merge
-      rest[styleProp] = style;
     }
   }
 
-  return rest as P;
-}
-
-/**
- * propsからstyleにプロパティを移す
- */
-function _moveStyleProps(
-  props: Record<string, any>,
-  style: Record<string, any>,
-  styleKeyMap: Record<string, keyof CSSProperties>,
-) {
-  for (const xKey in styleKeyMap) {
-    if (props[xKey] !== undefined) {
-      const key = styleKeyMap[xKey];
-      if (style[key] === undefined) {
-        style[key] = props[xKey];
-        delete props[xKey];
-      }
-    }
-  }
+  return rest as Omit<P, keyof StyleProps<M>>;
 }

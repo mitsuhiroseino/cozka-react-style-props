@@ -1,37 +1,36 @@
 import {
-  DecorationStyleKey,
-  EffectStyleKey,
-  FlexboxItemStyleKey,
-  FlexboxStyleKey,
-  LayoutStyleKey,
-  PositionStyleKey,
-  PrefixedStyleKeyMap,
-  SizeStyleKey,
-  SpacingStyleKey,
+  XDecorationStyleKeyMap,
+  XEffectStyleKeyMap,
+  XFlexboxItemStyleKeyMap,
+  XFlexboxStyleKeyMap,
+  XLayoutStyleKeyMap,
+  XPositionStyleKeyMap,
+  XSizeStyleKeyMap,
+  XSpacingStyleKeyMap,
+  XStyleKeyMap,
 } from './types';
 
 /**
  * 装飾に関するスタイルのキーのマッピング
  */
-export const DECORATION_STYLE_KEY_MAP: PrefixedStyleKeyMap<DecorationStyleKey> =
-  {
-    xBackground: 'background',
-    xBackgroundColor: 'backgroundColor',
-    xBorder: 'border',
-    xBorderBottom: 'borderBottom',
-    xBorderColor: 'borderColor',
-    xBorderLeft: 'borderLeft',
-    xBorderRadius: 'borderRadius',
-    xBorderRight: 'borderRight',
-    xBorderTop: 'borderTop',
-    xBoxShadow: 'boxShadow',
-    xColor: 'color',
-  } as const;
+export const DECORATION_STYLE_KEY_MAP: XDecorationStyleKeyMap = {
+  xBackground: 'background',
+  xBackgroundColor: 'backgroundColor',
+  xBorder: 'border',
+  xBorderBottom: 'borderBottom',
+  xBorderColor: 'borderColor',
+  xBorderLeft: 'borderLeft',
+  xBorderRadius: 'borderRadius',
+  xBorderRight: 'borderRight',
+  xBorderTop: 'borderTop',
+  xBoxShadow: 'boxShadow',
+  xColor: 'color',
+} as const;
 
 /**
  * 視覚効果に関するスタイルのキーのマッピング
  */
-export const EFFECT_STYLE_KEY_MAP: PrefixedStyleKeyMap<EffectStyleKey> = {
+export const EFFECT_STYLE_KEY_MAP: XEffectStyleKeyMap = {
   xOpacity: 'opacity',
   xVisibility: 'visibility',
 };
@@ -39,7 +38,7 @@ export const EFFECT_STYLE_KEY_MAP: PrefixedStyleKeyMap<EffectStyleKey> = {
 /**
  * Flexboxに関するスタイルのキーのマッピング
  */
-export const FLEXBOX_STYLE_KEY_MAP: PrefixedStyleKeyMap<FlexboxStyleKey> = {
+export const FLEXBOX_STYLE_KEY_MAP: XFlexboxStyleKeyMap = {
   xAlignItems: 'alignItems',
   xFlexDirection: 'flexDirection',
   xFlexWrap: 'flexWrap',
@@ -50,18 +49,17 @@ export const FLEXBOX_STYLE_KEY_MAP: PrefixedStyleKeyMap<FlexboxStyleKey> = {
 /**
  * Flexboxの子要素に関するスタイルのキー
  */
-export const FLEXBOX_ITEM_STYLE_KEY_MAP: PrefixedStyleKeyMap<FlexboxItemStyleKey> =
-  {
-    xFlex: 'flex',
-    xFlexBasis: 'flexBasis',
-    xFlexGrow: 'flexGrow',
-    xFlexShrink: 'flexShrink',
-  };
+export const FLEXBOX_ITEM_STYLE_KEY_MAP: XFlexboxItemStyleKeyMap = {
+  xFlex: 'flex',
+  xFlexBasis: 'flexBasis',
+  xFlexGrow: 'flexGrow',
+  xFlexShrink: 'flexShrink',
+};
 
 /**
  * レイアウトに関するスタイルのキー
  */
-export const LAYOUT_STYLE_KEY_MAP: PrefixedStyleKeyMap<LayoutStyleKey> = {
+export const LAYOUT_STYLE_KEY_MAP: XLayoutStyleKeyMap = {
   xDisplay: 'display',
   xOverflow: 'overflow',
 };
@@ -69,7 +67,7 @@ export const LAYOUT_STYLE_KEY_MAP: PrefixedStyleKeyMap<LayoutStyleKey> = {
 /**
  * 位置に関するスタイルのキー
  */
-export const POSITION_STYLE_KEY_MAP: PrefixedStyleKeyMap<PositionStyleKey> = {
+export const POSITION_STYLE_KEY_MAP: XPositionStyleKeyMap = {
   xBottom: 'bottom',
   xLeft: 'left',
   xPosition: 'position',
@@ -81,7 +79,7 @@ export const POSITION_STYLE_KEY_MAP: PrefixedStyleKeyMap<PositionStyleKey> = {
 /**
  * サイズに関するスタイルのキー
  */
-export const SIZE_STYLE_KEY_MAP: PrefixedStyleKeyMap<SizeStyleKey> = {
+export const SIZE_STYLE_KEY_MAP: XSizeStyleKeyMap = {
   xHeight: 'height',
   xMaxHeight: 'maxHeight',
   xMaxWidth: 'maxWidth',
@@ -94,7 +92,7 @@ export const SIZE_STYLE_KEY_MAP: PrefixedStyleKeyMap<SizeStyleKey> = {
 /**
  * 余白に関するスタイルのキー
  */
-export const SPACING_STYLE_KEY_MAP: PrefixedStyleKeyMap<SpacingStyleKey> = {
+export const SPACING_STYLE_KEY_MAP: XSpacingStyleKeyMap = {
   xMargin: 'margin',
   xMarginBottom: 'marginBottom',
   xMarginLeft: 'marginLeft',
@@ -107,7 +105,7 @@ export const SPACING_STYLE_KEY_MAP: PrefixedStyleKeyMap<SpacingStyleKey> = {
   xPaddingTop: 'paddingTop',
 };
 
-export const DEFAULT_STYLE_KEY_MAP = {
+export const DEFAULT_STYLE_KEY_MAP: XStyleKeyMap = {
   ...DECORATION_STYLE_KEY_MAP,
   ...EFFECT_STYLE_KEY_MAP,
   ...FLEXBOX_STYLE_KEY_MAP,

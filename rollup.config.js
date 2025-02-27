@@ -85,6 +85,7 @@ function _createOptions(input, output, format, extention, options = {}) {
     plugins: [
       nodeResolve(),
       typescript({
+        filterRoot: 'src',
         tsconfig: tsconfigPath,
         declaration,
         declarationDir: declaration ? output : null,

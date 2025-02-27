@@ -15,6 +15,7 @@ export default {
     ],
     // typescript用のpreset
     '@babel/preset-typescript',
+    ['@babel/preset-react', { runtime: 'automatic' }],
   ],
   plugins: [
     // babelのポリフィルを個々のソースコードに展開しない

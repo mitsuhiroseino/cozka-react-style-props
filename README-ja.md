@@ -53,7 +53,7 @@ const StyledBox = withStyledProps(Box);
 // propsのcssWidthの値をcssプロパティのwidthに、cssHeightの値をheightに設定する
 const options = {
   styleProp: 'css',
-  propsMap: { cssWidth: 'width', cssHeight: 'height' },
+  styleKeyMap: { cssWidth: 'width', cssHeight: 'height' },
 };
 
 // applyStylePropsの場合
@@ -73,23 +73,19 @@ const StyledBox = withStyledProps(Box, options);
 ### `styleApplyMode`
 
 - `merge`、`append`
-- `styleProp`に指定したプロパティに値が設定されていた場合の動作
-  - `merge`: 既存のプロパティ値がオブジェクトの場合はマージする
-  - `append`: 既存のプロパティ値が配列の場合は追加、配列以外の場合は新たに配列を作成する
-- デフォルト:
-  - styleProp=`style`の場合: `merge`
-  - styleProp=`css`の場合: `append`
-  - styleProp=`sx`の場合: `append`
-  - 上記以外の場合: `merge`
+- `styleProp`に指定したプロパティにオブジェクトが設定されていた場合の動作
+  - `merge`: マージする
+  - `append`: 配列に追加する
+- デフォルト: `merge`
 
-### `propsMap`
+### `styleKeyMap`
 
 - `Record<string, keyof CSSProperties>`
 - propsと`styleProp`で指定したプロパティ配下のキーのマッピング
-- デフォルト: 下記の通り
+- デフォルト:
 
 ```js
-const propsMap = {
+const styleKeyMap = {
   xBackground: 'background',
   xBackgroundColor: 'backgroundColor',
   xBorder: 'border',

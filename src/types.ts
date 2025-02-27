@@ -1,11 +1,5 @@
 import { CSSProperties } from 'react';
-import { DEFAULT_STYLE_KEY_MAP } from './constants';
-import { Prefixed, PrefixedUnion } from './utils-type';
-
-/**
- * デフォルトスタイルキーマップ
- */
-export type DefaultStyleKeyMap = typeof DEFAULT_STYLE_KEY_MAP;
+import { PrefixedUnion } from './utils-type';
 
 /**
  * props配下のスタイルとstyle配下のキーのマッピング
@@ -15,31 +9,40 @@ export type StyleKeyMap = Record<string, keyof CSSProperties>;
 /**
  * スタイル関連のプロパティ
  */
-export type StyleProps<M extends StyleKeyMap = DefaultStyleKeyMap> = Record<
-  keyof M,
-  CSSProperties[M[keyof M]]
+export type StyleProps<M extends StyleKeyMap = XStyleKeyMap> = {
+  [K in keyof M]?: CSSProperties[M[K]];
+};
+
+/**
+ * プレフィックスを付与したプロパティと元のプロパティのマッピング
+ */
+export type PrefixedStyleKeyMap<U extends string, P extends string = Prefix> = {
+  [K in U as PrefixedUnion<K, P>]: K;
+};
+
+/**
+ * スタイル関連のプロパティをstyle等に移動した後のプロパティ
+ */
+export type StyledProps<P, M extends StyleKeyMap = XStyleKeyMap> = Omit<
+  P,
+  keyof M
 >;
 
-export type StylePropsOptions<M extends StyleKeyMap = DefaultStyleKeyMap> = {
+export type StylePropsOptions<M extends StyleKeyMap = XStyleKeyMap> = {
   /**
-   * スタイルプロパティの設定先
+   * スタイル関連のプロパティの設定先
    */
   styleProp?: 'style' | 'css' | 'sx' | string;
 
   /**
-   * `styleProp`で指定したプロパティに値が設定されていた時の\
+   * `styleProp`で指定したプロパティにオブジェクトの値が設定されていた時の\
    * スタイル関連のプロパティを適用する方法
-   * 各値の意味は下記の通り
+   * 各値における動作は下記の通り
    *
-   * - `merge`: オブジェクトのマージ
-   * - `append`: 配列への追加
+   * - `merge`: オブジェクトに設定されていないプロパティのみマージ
+   * - `append`: 配列を作成し追加
    *
-   * またデフォルトは下記の通り
-   *
-   * - styleProp=`style`の場合: `merge`
-   * - styleProp=`css`の場合: `append`
-   * - styleProp=`sx`の場合: `append`
-   * - 上記以外の場合: `merge`
+   * デフォルトは`merge`
    */
   styleApplyMode?: 'merge' | 'append';
 
@@ -53,85 +56,65 @@ export type StylePropsOptions<M extends StyleKeyMap = DefaultStyleKeyMap> = {
 type Prefix = 'x';
 
 /**
- * 装飾に関するプロパティ
+ * styleKeyMapのデフォルト値の装飾に関するプロパティ
  */
-export type XDecorationStyleProps = Prefixed<
-  Pick<CSSProperties, DecorationStyleKey>,
+export type XDecorationStyleKeyMap = PrefixedStyleKeyMap<
+  DecorationStyleKey,
   Prefix
 >;
 
 /**
- * 視覚効果に関するプロパティ
+ * styleKeyMapのデフォルト値の視覚効果に関するプロパティ
  */
-export type XEffectStyleProps = Prefixed<
-  Pick<CSSProperties, EffectStyleKey>,
+export type XEffectStyleKeyMap = PrefixedStyleKeyMap<EffectStyleKey, Prefix>;
+
+/**
+ * styleKeyMapのデフォルト値のFlexboxに関するプロパティ
+ */
+export type XFlexboxStyleKeyMap = PrefixedStyleKeyMap<FlexboxStyleKey, Prefix>;
+
+/**
+ * styleKeyMapのデフォルト値のFlexboxの子要素に関するプロパティ
+ */
+export type XFlexboxItemStyleKeyMap = PrefixedStyleKeyMap<
+  FlexboxItemStyleKey,
   Prefix
 >;
 
 /**
- * Flexboxに関するプロパティ
+ * styleKeyMapのデフォルト値のレイアウトに関するプロパティ
  */
-export type XFlexboxStyleProps = Prefixed<
-  Pick<CSSProperties, FlexboxStyleKey>,
+export type XLayoutStyleKeyMap = PrefixedStyleKeyMap<LayoutStyleKey, Prefix>;
+
+/**
+ * styleKeyMapのデフォルト値の位置に関するプロパティ
+ */
+export type XPositionStyleKeyMap = PrefixedStyleKeyMap<
+  PositionStyleKey,
   Prefix
 >;
 
 /**
- * Flexboxの子要素に関するプロパティ
+ * styleKeyMapのデフォルト値のサイズに関するプロパティ
  */
-export type XFlexboxItemStyleProps = Prefixed<
-  Pick<CSSProperties, FlexboxItemStyleKey>,
-  Prefix
->;
+export type XSizeStyleKeyMap = PrefixedStyleKeyMap<SizeStyleKey, Prefix>;
 
 /**
- * レイアウトに関するプロパティ
+ * styleKeyMapのデフォルト値の余白に関するプロパティ
  */
-export type XLayoutStyleProps = Prefixed<
-  Pick<CSSProperties, LayoutStyleKey>,
-  Prefix
->;
+export type XSpacingStyleKeyMap = PrefixedStyleKeyMap<SpacingStyleKey, Prefix>;
 
 /**
- * 位置に関するプロパティ
+ * styleKeyMapのデフォルト値のプロパティ
  */
-export type XPositionStyleProps = Prefixed<
-  Pick<CSSProperties, PositionStyleKey>,
-  Prefix
->;
-
-/**
- * サイズに関するプロパティ
- */
-export type XSizeStyleProps = Prefixed<
-  Pick<CSSProperties, SizeStyleKey>,
-  Prefix
->;
-
-/**
- * 余白に関するプロパティ
- */
-export type XSpacingStyleProps = Prefixed<
-  Pick<CSSProperties, SpacingStyleKey>,
-  Prefix
->;
-
-/**
- * スタイルのプロパティ
- */
-export type XStyleProps =
-  | XDecorationStyleProps
-  | XEffectStyleProps
-  | XFlexboxStyleProps
-  | XFlexboxItemStyleProps
-  | XLayoutStyleProps
-  | XPositionStyleProps
-  | XSizeStyleProps
-  | XSpacingStyleProps;
-
-export type PrefixedStyleKeyMap<U extends string> = {
-  [K in U as PrefixedUnion<K, Prefix>]: K;
-};
+export type XStyleKeyMap = XDecorationStyleKeyMap &
+  XEffectStyleKeyMap &
+  XFlexboxStyleKeyMap &
+  XFlexboxItemStyleKeyMap &
+  XLayoutStyleKeyMap &
+  XPositionStyleKeyMap &
+  XSizeStyleKeyMap &
+  XSpacingStyleKeyMap;
 
 /**
  * 装飾に関するスタイルのキー
