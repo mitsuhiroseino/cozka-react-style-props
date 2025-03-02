@@ -1,5 +1,5 @@
+import { PrefixedUnion } from '@gusok/utils-niche-types';
 import { CSSProperties } from 'react';
-import { PrefixedUnion } from './utils-type';
 
 /**
  * props配下のスタイルとstyle配下のキーのマッピング
@@ -16,8 +16,8 @@ export type StyleProps<M extends StyleKeyMap = XStyleKeyMap> = {
 /**
  * プレフィックスを付与したプロパティと元のプロパティのマッピング
  */
-export type PrefixedStyleKeyMap<U extends string, P extends string = Prefix> = {
-  [K in U as PrefixedUnion<K, P>]: K;
+export type PrefixedStyleKeyMap<P extends string, U extends string> = {
+  [K in U as PrefixedUnion<P, K>]: K;
 };
 
 /**
@@ -59,50 +59,50 @@ type Prefix = 'x';
  * styleKeyMapのデフォルト値の装飾に関するプロパティ
  */
 export type XDecorationStyleKeyMap = PrefixedStyleKeyMap<
-  DecorationStyleKey,
-  Prefix
+  Prefix,
+  DecorationStyleKey
 >;
 
 /**
  * styleKeyMapのデフォルト値の視覚効果に関するプロパティ
  */
-export type XEffectStyleKeyMap = PrefixedStyleKeyMap<EffectStyleKey, Prefix>;
+export type XEffectStyleKeyMap = PrefixedStyleKeyMap<Prefix, EffectStyleKey>;
 
 /**
  * styleKeyMapのデフォルト値のFlexboxに関するプロパティ
  */
-export type XFlexboxStyleKeyMap = PrefixedStyleKeyMap<FlexboxStyleKey, Prefix>;
+export type XFlexboxStyleKeyMap = PrefixedStyleKeyMap<Prefix, FlexboxStyleKey>;
 
 /**
  * styleKeyMapのデフォルト値のFlexboxの子要素に関するプロパティ
  */
 export type XFlexboxItemStyleKeyMap = PrefixedStyleKeyMap<
-  FlexboxItemStyleKey,
-  Prefix
+  Prefix,
+  FlexboxItemStyleKey
 >;
 
 /**
  * styleKeyMapのデフォルト値のレイアウトに関するプロパティ
  */
-export type XLayoutStyleKeyMap = PrefixedStyleKeyMap<LayoutStyleKey, Prefix>;
+export type XLayoutStyleKeyMap = PrefixedStyleKeyMap<Prefix, LayoutStyleKey>;
 
 /**
  * styleKeyMapのデフォルト値の位置に関するプロパティ
  */
 export type XPositionStyleKeyMap = PrefixedStyleKeyMap<
-  PositionStyleKey,
-  Prefix
+  Prefix,
+  PositionStyleKey
 >;
 
 /**
  * styleKeyMapのデフォルト値のサイズに関するプロパティ
  */
-export type XSizeStyleKeyMap = PrefixedStyleKeyMap<SizeStyleKey, Prefix>;
+export type XSizeStyleKeyMap = PrefixedStyleKeyMap<Prefix, SizeStyleKey>;
 
 /**
  * styleKeyMapのデフォルト値の余白に関するプロパティ
  */
-export type XSpacingStyleKeyMap = PrefixedStyleKeyMap<SpacingStyleKey, Prefix>;
+export type XSpacingStyleKeyMap = PrefixedStyleKeyMap<Prefix, SpacingStyleKey>;
 
 /**
  * styleKeyMapのデフォルト値のプロパティ

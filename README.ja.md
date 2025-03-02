@@ -1,10 +1,10 @@
 # @gusok/react-style-props
 
-**[English README is available here](./README.md)**
-
 `@gusok/react-style-props` は、コンポーネントのpropsに設定されたスタイル関連のプロパティを、  
 [React](https://react.dev/)標準の`style`や[Emotion](https://emotion.sh/docs/introduction)の`css`等のプロパティへ移動させる機能を提供するパッケージです。  
 この機能は利用頻度の高いスタイル関連のプロパティを設定しやすくすることを目的に作成されました。
+
+**[English README is available here](./README.md)**
 
 ## インストール
 

@@ -38,7 +38,7 @@ const options = [
       copy({
         targets: [
           {
-            src: ['LICENSE', 'README.md', 'README-ja.md'],
+            src: ['LICENSE', 'README.md', 'README.ja.md'],
             dest: 'dist',
           },
         ],
