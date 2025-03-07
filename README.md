@@ -1,6 +1,6 @@
-# @gusok/react-style-props
+# @cozka/react-style-props
 
-`@gusok/react-style-props` is a package that moves style-related properties set in component props to properties like React's standard `style` or Emotion's `css`.
+`@cozka/react-style-props` is a package that moves style-related properties set in component props to properties like React's standard `style` or Emotion's `css`.
 This feature is designed to make it easier to set frequently used style-related properties.
 
 **[日本語の README はこちら](./README.ja.md)**
@@ -8,7 +8,7 @@ This feature is designed to make it easier to set frequently used style-related 
 ## Installation
 
 ```sh
-npm install @gusok/react-style-props
+npm install @cozka/react-style-props
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ npm install @gusok/react-style-props
 `applyStyleProps` applies style-related properties to `style`, `css`, `sx`, etc.
 
 ```tsx
-import applyStyleProps from '@gusok/react-style-props';
+import applyStyleProps from '@cozka/react-style-props';
 
 const props = {
   xColor: 'red',
@@ -36,7 +36,7 @@ console.log(styledProps);
 You can use an HOC to integrate style-related properties into a component.
 
 ```tsx
-import { withStyledProps } from '@gusok/react-style-props';
+import { withStyledProps } from '@cozka/react-style-props';
 
 const Box = (props: any) => <div {...props} />;
 const StyledBox = withStyledProps(Box);

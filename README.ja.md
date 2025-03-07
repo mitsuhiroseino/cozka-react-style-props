@@ -1,6 +1,6 @@
-# @gusok/react-style-props
+# @cozka/react-style-props
 
-`@gusok/react-style-props` は、コンポーネントのpropsに設定されたスタイル関連のプロパティを、  
+`@cozka/react-style-props` は、コンポーネントのpropsに設定されたスタイル関連のプロパティを、  
 [React](https://react.dev/)標準の`style`や[Emotion](https://emotion.sh/docs/introduction)の`css`等のプロパティへ移動させる機能を提供するパッケージです。  
 この機能は利用頻度の高いスタイル関連のプロパティを設定しやすくすることを目的に作成されました。
 
@@ -9,7 +9,7 @@
 ## インストール
 
 ```sh
-npm install @gusok/react-style-props
+npm install @cozka/react-style-props
 ```
 
 ## 使い方
@@ -19,7 +19,7 @@ npm install @gusok/react-style-props
 `applyStyleProps` は、スタイル関連のプロパティを `style`、`css`、`sx` などに適用します。
 
 ```tsx
-import applyStyleProps from '@gusok/react-style-props';
+import applyStyleProps from '@cozka/react-style-props';
 
 const props = {
   xColor: 'red',
@@ -37,7 +37,7 @@ console.log(styledProps);
 HOC を使用してスタイル関連のプロパティを統合する機能をコンポーネントへ追加できます。
 
 ```tsx
-import { withStyledProps } from '@gusok/react-style-props';
+import { withStyledProps } from '@cozka/react-style-props';
 
 const Box = (props: any) => <div {...props} />;
 const StyledBox = withStyledProps(Box);

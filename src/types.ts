@@ -1,4 +1,4 @@
-import { PrefixedUnion } from '@gusok/utils-niche-types';
+import { PrefixedUnion } from '@cozka/utils-niche-types';
 import { CSSProperties } from 'react';
 
 /**

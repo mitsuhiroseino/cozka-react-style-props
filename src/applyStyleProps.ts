@@ -1,4 +1,4 @@
-import proxyStyle from '@gusok/react-style-proxy';
+import proxyStyle from '@cozka/react-style-proxy';
 import { CSSProperties } from 'react';
 import { DEFAULT_STYLE_KEY_MAP } from './constants';
 import { StyleProps, StylePropsOptions, XStyleKeyMap } from './types';
