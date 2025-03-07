@@ -1,6 +1,7 @@
 import {
-  ComponentType,
+  createElement,
   CSSProperties,
+  ElementType,
   ForwardedRef,
   forwardRef,
   PropsWithoutRef,
@@ -18,11 +19,11 @@ export default function withStyledProps<
   P extends Record<string, any>,
   M extends Record<string, keyof CSSProperties> = XStyleKeyMap,
   T = unknown,
->(Component: ComponentType<P>, options?: StylePropsOptions<M>) {
+>(Component: ElementType<P>, options?: StylePropsOptions<M>) {
   return forwardRef(
     (props: PropsWithoutRef<P & StyleProps<M>>, ref: ForwardedRef<T>) => {
       const styleizedProps = applyStyleProps(props, options) as unknown as P;
-      return <Component ref={ref} {...styleizedProps} />;
+      return createElement(Component, { ref, ...styleizedProps });
     },
   );
 }
