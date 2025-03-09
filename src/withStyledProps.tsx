@@ -1,5 +1,5 @@
+import createReactElement from '@cozka/react-utils/createReactElement';
 import {
-  createElement,
   CSSProperties,
   ElementType,
   ForwardedRef,
@@ -17,13 +17,14 @@ import { StyleProps, StylePropsOptions, XStyleKeyMap } from './types';
  */
 export default function withStyledProps<
   P extends Record<string, any>,
-  M extends Record<string, keyof CSSProperties> = XStyleKeyMap,
   T = unknown,
+  M extends Record<string, keyof CSSProperties> = XStyleKeyMap,
 >(Component: ElementType<P>, options?: StylePropsOptions<M>) {
+  const { jsxRuntime = createReactElement, ...opts } = options || {};
   return forwardRef(
     (props: PropsWithoutRef<P & StyleProps<M>>, ref: ForwardedRef<T>) => {
-      const styleizedProps = applyStyleProps(props, options) as unknown as P;
-      return createElement(Component, { ref, ...styleizedProps });
+      const styleizedProps = applyStyleProps(props, opts) as unknown as P;
+      return jsxRuntime(Component, { ref, ...styleizedProps });
     },
   );
 }

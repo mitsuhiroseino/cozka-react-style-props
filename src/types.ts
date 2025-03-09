@@ -1,5 +1,6 @@
+import { StyleProxyOptions } from '@cozka/react-style-proxy';
 import { PrefixedUnion } from '@cozka/utils-niche-types';
-import { CSSProperties } from 'react';
+import { CSSProperties, ElementType, Key, ReactElement } from 'react';
 
 /**
  * props配下のスタイルとstyle配下のキーのマッピング
@@ -28,30 +29,25 @@ export type StyledProps<P, M extends StyleKeyMap = XStyleKeyMap> = Omit<
   keyof M
 >;
 
-export type StylePropsOptions<M extends StyleKeyMap = XStyleKeyMap> = {
-  /**
-   * スタイル関連のプロパティの設定先
-   */
-  styleProp?: 'style' | 'css' | 'sx' | string;
+export type StylePropsOptions<M extends StyleKeyMap = XStyleKeyMap> =
+  StyleProxyOptions & {
+    /**
+     * プロパティとスタイルのプロパティのマッピング\
+     * 未指定の場合はDEFAULT_STYLE_KEY_MAP
+     */
+    styleKeyMap?: M;
 
-  /**
-   * `styleProp`で指定したプロパティにオブジェクトの値が設定されていた時の\
-   * スタイル関連のプロパティを適用する方法
-   * 各値における動作は下記の通り
-   *
-   * - `merge`: オブジェクトに設定されていないプロパティのみマージ
-   * - `append`: 配列を作成し追加
-   *
-   * デフォルトは`merge`
-   */
-  styleApplyMode?: 'merge' | 'append';
-
-  /**
-   * プロパティとスタイルのプロパティのマッピング\
-   * 未指定の場合はDEFAULT_STYLE_KEY_MAP
-   */
-  styleKeyMap?: M;
-};
+    /**
+     * jsxラインタイム
+     * デフォルトは`react/jsx-runtime/jsx`または`react/jsx-runtime/jsxs`
+     *
+     * @param type
+     * @param props
+     * @param key
+     * @returns
+     */
+    jsxRuntime?: (type: ElementType, props: unknown, key?: Key) => ReactElement;
+  };
 
 type Prefix = 'x';
 

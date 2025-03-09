@@ -1412,6 +1412,7 @@ __metadata:
     "@babel/preset-react": "npm:^7.26.3"
     "@babel/preset-typescript": "npm:^7.21.4"
     "@cozka/react-style-proxy": "npm:^0.2.0"
+    "@cozka/react-utils": "npm:^0.3.1"
     "@cozka/rollup-create-dist-packagejson": "npm:^0.7.0"
     "@cozka/utils-niche-types": "npm:^0.2.0"
     "@eslint/js": "npm:^9.3.0"
@@ -1443,7 +1444,6 @@ __metadata:
     prettier-plugin-organize-imports: "npm:^3.2.4"
     prettier-plugin-packagejson: "npm:^2.5.8"
     react: "npm:^18.0.0"
-    react-dom: "npm:^18.0.0"
     rimraf: "npm:^3.0.2"
     rollup: "npm:^3.26.0"
     rollup-plugin-copy: "npm:^3.5.0"
@@ -1456,7 +1456,6 @@ __metadata:
     typescript-eslint: "npm:^7.10.0"
   peerDependencies:
     react: ^18.0.0 || ^19.0.0
-    react-dom: ^18.0.0 || ^19.0.0
   languageName: unknown
   linkType: soft
 
@@ -1464,6 +1463,15 @@ __metadata:
   version: 0.2.0
   resolution: "@cozka/react-style-proxy@npm:0.2.0"
   checksum: 10c0/14fbda5cff87f441109967a9404faea4e70735d32497fac89b6d12c65b0d1c413ed7360e6ba08de06ae039282f9c84db1798ad9b425b5f0f1ed35a600d0bc35d
+  languageName: node
+  linkType: hard
+
+"@cozka/react-utils@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "@cozka/react-utils@npm:0.3.1"
+  peerDependencies:
+    react: ^18.0.0 || ^19.0.0
+  checksum: 10c0/4fc84f0831c74baa796e29fa0110c14b71f7e7d0043b7846f965544a4c818b0fc2f9d00bd93f46f56ec890fb728867df8992abd92121969ca4d16bfbd06862c5
   languageName: node
   linkType: hard
 
@@ -6356,18 +6364,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^18.0.0":
-  version: 18.3.1
-  resolution: "react-dom@npm:18.3.1"
-  dependencies:
-    loose-envify: "npm:^1.1.0"
-    scheduler: "npm:^0.23.2"
-  peerDependencies:
-    react: ^18.3.1
-  checksum: 10c0/a752496c1941f958f2e8ac56239172296fcddce1365ce45222d04a1947e0cc5547df3e8447f855a81d6d39f008d7c32eab43db3712077f09e3f67c4874973e85
-  languageName: node
-  linkType: hard
-
 "react-is@npm:^17.0.1":
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
@@ -6662,15 +6658,6 @@ __metadata:
   dependencies:
     xmlchars: "npm:^2.2.0"
   checksum: 10c0/3847b839f060ef3476eb8623d099aa502ad658f5c40fd60c105ebce86d244389b0d76fcae30f4d0c728d7705ceb2f7e9b34bb54717b6a7dbedaf5dad2d9a4b74
-  languageName: node
-  linkType: hard
-
-"scheduler@npm:^0.23.2":
-  version: 0.23.2
-  resolution: "scheduler@npm:0.23.2"
-  dependencies:
-    loose-envify: "npm:^1.1.0"
-  checksum: 10c0/26383305e249651d4c58e6705d5f8425f153211aef95f15161c151f7b8de885f24751b377e4a0b3dd42cce09aad3f87a61dab7636859c0d89b7daf1a1e2a5c78
   languageName: node
   linkType: hard
 
