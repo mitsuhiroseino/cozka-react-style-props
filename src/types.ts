@@ -30,13 +30,7 @@ export type StyledProps<P, M extends StyleKeyMap = XStyleKeyMap> = Omit<
 >;
 
 export type StylePropsOptions<M extends StyleKeyMap = XStyleKeyMap> =
-  StyleProxyOptions & {
-    /**
-     * プロパティとスタイルのプロパティのマッピング\
-     * 未指定の場合はDEFAULT_STYLE_KEY_MAP
-     */
-    styleKeyMap?: M;
-
+  ApplyStylePropsOptions<M> & {
     /**
      * jsxラインタイム
      * デフォルトは`react/jsx-runtime/jsx`または`react/jsx-runtime/jsxs`
@@ -49,6 +43,31 @@ export type StylePropsOptions<M extends StyleKeyMap = XStyleKeyMap> =
     jsxRuntime?: (type: ElementType, props: unknown, key?: Key) => ReactElement;
   };
 
+/**
+ * applyStylePropsのオプション
+ */
+export type ApplyStylePropsOptions<M extends StyleKeyMap = XStyleKeyMap> =
+  StyleProxyOptions & ExtractStylePropsOptions<M>;
+
+/**
+ * extractStylePropsのオプション
+ */
+export type ExtractStylePropsOptions<M extends StyleKeyMap = XStyleKeyMap> = {
+  /**
+   * プロパティとスタイルのプロパティのマッピング\
+   * 未指定の場合はDEFAULT_STYLE_KEY_MAP
+   */
+  styleKeyMap?: M;
+
+  /**
+   * マッピングから除外するプロパティのキー
+   */
+  excludeStyleKeys?: keyof M[];
+};
+
+/**
+ * デフォルトのプレフィックス
+ */
 type Prefix = 'x';
 
 /**

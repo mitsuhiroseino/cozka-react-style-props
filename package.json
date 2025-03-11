@@ -1,6 +1,6 @@
 {
   "name": "@cozka/react-style-props",
-  "version": "0.7.2",
+  "version": "0.7.6",
   "keywords": [
     "react",
     "emotion",
@@ -22,8 +22,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@cozka/react-style-proxy": "^0.2.0",
-    "@cozka/react-utils": "^0.3.1"
+    "@cozka/react-style-proxy": "^0.2.1",
+    "@cozka/react-utils": "^0.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",

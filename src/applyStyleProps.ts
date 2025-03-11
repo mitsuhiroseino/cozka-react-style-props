@@ -1,7 +1,7 @@
 import proxyStyle from '@cozka/react-style-proxy';
 import { CSSProperties } from 'react';
-import { DEFAULT_STYLE_KEY_MAP } from './constants';
-import { StyleProps, StylePropsOptions, XStyleKeyMap } from './types';
+import extractStyleProps from './extractStyleProps';
+import { ApplyStylePropsOptions, StyleProps, XStyleKeyMap } from './types';
 
 /**
  * スタイル関連のプロパティをスタイルプロパティ(styleやcss)へ適用する
@@ -13,26 +13,13 @@ import { StyleProps, StylePropsOptions, XStyleKeyMap } from './types';
 export default function applyStyleProps<
   P extends Record<string, any> & StyleProps<M>,
   M extends Record<string, keyof CSSProperties> = XStyleKeyMap,
->(props: P, options: StylePropsOptions<M> = {}) {
-  const { styleKeyMap = DEFAULT_STYLE_KEY_MAP, ...opts } = options;
-  let rest: Record<string, any> = { ...props };
+>(props: P, options: ApplyStylePropsOptions<M> = {}) {
+  const { props: rest, style } = extractStyleProps(props, options);
 
-  const style: Record<string, any> = {};
-  let hasStyle = false;
-  // rest配下のプロパティをstyleに移動
-  for (const xKey in styleKeyMap) {
-    if (rest[xKey] !== undefined) {
-      const key = styleKeyMap[xKey];
-      style[key] = rest[xKey];
-      delete rest[xKey];
-      hasStyle = true;
-    }
-  }
-
-  if (hasStyle) {
+  if (Object.keys(style).length) {
     // style関連のプロパティがある場合のみ処理
-    rest = proxyStyle(rest, style, opts);
+    return proxyStyle(rest, style, options);
+  } else {
+    return rest;
   }
-
-  return rest as Omit<P, keyof StyleProps<M>>;
 }
