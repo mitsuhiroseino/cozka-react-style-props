@@ -1,6 +1,6 @@
 {
   "name": "@cozka/react-style-props",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "keywords": [
     "react",
     "emotion",
@@ -22,8 +22,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@cozka/react-style-proxy": "^0.2.1",
-    "@cozka/react-utils": "^0.3.3"
+    "@cozka/react-style-proxy": "^0.2.3",
+    "@cozka/react-utils": "^0.3.3",
+    "@cozka/utils-niche-types": "^0.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
@@ -33,7 +34,6 @@
     "@babel/preset-react": "^7.26.3",
     "@babel/preset-typescript": "^7.21.4",
     "@cozka/rollup-create-dist-packagejson": "^0.7.0",
-    "@cozka/utils-niche-types": "^0.2.0",
     "@eslint/js": "^9.3.0",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^24.0.1",

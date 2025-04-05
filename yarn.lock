@@ -1411,8 +1411,8 @@ __metadata:
     "@babel/preset-env": "npm:^7.16.11"
     "@babel/preset-react": "npm:^7.26.3"
     "@babel/preset-typescript": "npm:^7.21.4"
-    "@cozka/react-style-proxy": "npm:^0.2.0"
-    "@cozka/react-utils": "npm:^0.3.1"
+    "@cozka/react-style-proxy": "npm:^0.2.3"
+    "@cozka/react-utils": "npm:^0.3.3"
     "@cozka/rollup-create-dist-packagejson": "npm:^0.7.0"
     "@cozka/utils-niche-types": "npm:^0.2.0"
     "@eslint/js": "npm:^9.3.0"
@@ -1459,19 +1459,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@cozka/react-style-proxy@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "@cozka/react-style-proxy@npm:0.2.0"
-  checksum: 10c0/14fbda5cff87f441109967a9404faea4e70735d32497fac89b6d12c65b0d1c413ed7360e6ba08de06ae039282f9c84db1798ad9b425b5f0f1ed35a600d0bc35d
+"@cozka/react-style-proxy@npm:^0.2.3":
+  version: 0.2.3
+  resolution: "@cozka/react-style-proxy@npm:0.2.3"
+  checksum: 10c0/6b037b401a9eb787e2d96b2ce118c228f9daeb6024afb7fe3ebf4bb6e27c5f04eb1d6c1ef6877ea2d426b61c395de26ddbb2356bbc7971a821fd0d27b8ce0251
   languageName: node
   linkType: hard
 
-"@cozka/react-utils@npm:^0.3.1":
-  version: 0.3.1
-  resolution: "@cozka/react-utils@npm:0.3.1"
+"@cozka/react-utils@npm:^0.3.3":
+  version: 0.3.3
+  resolution: "@cozka/react-utils@npm:0.3.3"
   peerDependencies:
     react: ^18.0.0 || ^19.0.0
-  checksum: 10c0/4fc84f0831c74baa796e29fa0110c14b71f7e7d0043b7846f965544a4c818b0fc2f9d00bd93f46f56ec890fb728867df8992abd92121969ca4d16bfbd06862c5
+  checksum: 10c0/e3f098b9c1323ef4ff2255c0fd10600fd00a4069dc6d617d1e5fb3fe2fe60bded058981bdd5e1ed9db3f414c6ba4cbd2609d37d326dbdf34527b98b307f6b82a
   languageName: node
   linkType: hard
 
