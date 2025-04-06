@@ -28,12 +28,16 @@ const options = [
     declaration: true,
     plugins: [
       packagejson({
-        content: {
+        content: (pkgJson) => ({
           main: `${OUTPUT_CJS_DIR}/index${EXTENTION_CJS}`,
           module: `index${EXTENTION_ESM}`,
           types: 'index.d.ts',
           files: ['**/*'],
-        },
+          dependencies: {
+            '@cozka/utils-niche-types':
+              pkgJson.dependencies['@cozka/utils-niche-types'],
+          },
+        }),
       }),
       copy({
         targets: [
