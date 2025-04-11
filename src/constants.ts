@@ -22,7 +22,9 @@ export const DECORATION_STYLE_KEY_MAP: XDecorationStyleKeyMap = {
   xBorderLeft: 'borderLeft',
   xBorderRadius: 'borderRadius',
   xBorderRight: 'borderRight',
+  xBorderStyle: 'borderStyle',
   xBorderTop: 'borderTop',
+  xBorderWidth: 'borderWidth',
   xBoxShadow: 'boxShadow',
   xColor: 'color',
 } as const;

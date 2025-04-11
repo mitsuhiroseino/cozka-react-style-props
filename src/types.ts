@@ -143,7 +143,9 @@ export type DecorationStyleKey =
   | 'borderLeft'
   | 'borderRadius'
   | 'borderRight'
+  | 'borderStyle'
   | 'borderTop'
+  | 'borderWidth'
   | 'boxShadow'
   | 'color';
 
